@@ -1,0 +1,59 @@
+### criar cliente
+POST http://localhost:3000/clientes
+Content-Type: application/json
+
+{
+  "nome": "Carlos",
+  "sobrenome": "Oliveira",
+  "telefone": "46991112222",
+  "email": "carlos@email.com"
+}
+
+### listar todos os clientes
+GET http://localhost:3000/clientes
+
+### consultar cliente por id 
+GET http://localhost:3000/clientes/1
+
+### consultar cliente inexistente
+GET http://localhost:3000/clientes/999
+
+### criar produto
+POST http://localhost:3000/produtos
+Content-Type: application/json
+
+{
+  "nome": "Teclado Mecanico",
+  "preco": 250.00
+}
+
+### criar pedido com cliente valido 
+POST http://localhost:3000/pedidos
+Content-Type: application/json
+
+{
+  "cliente_id": 1,
+  "produtoId": 1,
+  "quantidade": 2
+}
+
+###criar um pedido com cliente inexistente 
+POST http://localhost:3000/pedidos
+Content-Type: application/json
+
+{
+  "cliente_id": 999,
+  "produtoId": 1,
+  "quantidade": 1
+}
+
+### cadastrar cliente com email duplicado 
+POST http://localhost:3000/clientes
+Content-Type: application/json
+
+{
+  "nome": "Carlos",
+  "sobrenome": "Oliveira",
+  "telefone": "46991112222",
+  "email": "carlos@email.com"
+}

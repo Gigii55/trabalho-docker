@@ -15,11 +15,14 @@ services:
       - "3002:3002"
     environment:
       PRODUTOS_URL: http://produtos:3001
+      CLIENTES_URL: http://clientes:3003
       DATABASE_URL: postgres://postgres:postgres@postgres:5432/pedidos_db
     depends_on:
       postgres:
         condition: service_healthy
       produtos:
+        condition: service_started
+      clientes:
         condition: service_started
 
   clientes:
