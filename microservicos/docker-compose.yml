@@ -22,6 +22,16 @@ services:
       produtos:
         condition: service_started
 
+  clientes:
+    build: ./clientes
+    ports:
+      - "3003:3003"
+    environment:
+      DATABASE_URL: postgres://postgres:postgres@postgres:5432/clientes_db
+    depends_on:
+      postgres:
+        condition: service_healthy
+        
   gateway:
     build: ./gateway
     ports:
