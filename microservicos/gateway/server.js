@@ -11,6 +11,8 @@ const PRODUTOS_URL =
 const PEDIDOS_URL =
     process.env.PEDIDOS_URL || "http://localhost:3002";
 
+const CLIENTES_URL =
+    process.env.CLIENTES_URL || "http://localhost:3003";
 
 app.use("/produtos", async (req, res) => {
     try {
@@ -59,4 +61,26 @@ app.use("/pedidos", async (req, res) => {
 
 app.listen(3000, () => {
     console.log("Gateway rodando na porta 3000");
+});
+
+app.use("/clientes", async (req, res) => {
+    try {
+        const resposta = await axios({
+            method: req.method,
+            url: `${CLIENTES_URL}${req.originalUrl}`,
+            data: req.body,
+            params: req.query,
+            timeout: 3000
+        });
+
+        res.status(resposta.status).json(resposta.data);
+    } catch (erro) {
+        if (erro.response) {
+            return res.status(erro.response.status).json(erro.response.data);
+        }
+
+        return res.status(503).json({
+            erro: "seerviço de clientes indisponível"
+        });
+    }
 });
