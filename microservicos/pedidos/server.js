@@ -4,6 +4,23 @@ const db = require("./db");
 
 const app = express();
 
+async function criarTabela() {
+    await db.query(`
+        CREATE TABLE IF NOT EXISTS pedidos (
+        id SERIAL PRIMARY KEY,
+        cliente_id INTEGER NOT NULL,
+        produto_id INTEGER NOT NULL,
+        nome_produto VARCHAR(100) NOT NULL,
+        preco_unitario NUMERIC(10, 2) NOT NULL,
+        quantidade INTEGER NOT NULL,
+        total NUMERIC(10, 2) NOT NULL
+        )
+    `);
+
+    console.log("Tabela de pedidos pronta");
+}
+
+
 const PRODUTOS_URL =
     process.env.PRODUTOS_URL || "http://localhost:3001";
 
