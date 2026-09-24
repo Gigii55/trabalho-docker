@@ -7,7 +7,7 @@ Content-Type: application/json
 
 {
   "clienteId": 1,
-  "produtoId": 1,
+  "produtoId": 2,
   "quantidade": 2
 }
 
