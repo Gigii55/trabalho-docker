@@ -11,10 +11,6 @@ const produtos = [
     { id: 3, nome: "Monitor", preco: 900 }
 ];
 
-/*app.get("/produtos", (req, res) => {
-    res.json(produtos);
-});*/
-
 app.get("/produtos", async (req, res) => {
     try {
         const resultado = await db.query(
@@ -29,17 +25,6 @@ app.get("/produtos", async (req, res) => {
     }
 });
 
-/*app.get("/produtos/:id", (req, res) => {
-    const produto = produtos.find(
-        p => p.id === Number(req.params.id)
-    );
-
-    if (!produto) {
-        return res.status(404).json({ erro: "Produto não encontrado" });
-    }
-
-    res.json(produto);
-});*/
 
 app.get("/produtos/:id", async (req, res) => {
     try {

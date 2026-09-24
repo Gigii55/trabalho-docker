@@ -14,10 +14,10 @@ async function criarTabela() {
     await db.query(`
         CREATE TABLE IF NOT EXISTS pedidos (
         id SERIAL PRIMARY KEY,
-        cliente_id INTEGER NOT NULL,
-        produto_id INTEGER NOT NULL,
-        nome_produto VARCHAR(100) NOT NULL,
-        preco_unitario NUMERIC(10, 2) NOT NULL,
+        clienteId INTEGER NOT NULL,
+        produtoId INTEGER NOT NULL,
+        nomeProduto VARCHAR(100) NOT NULL,
+        precoUnitario NUMERIC(10, 2) NOT NULL,
         quantidade INTEGER NOT NULL,
         total NUMERIC(10, 2) NOT NULL
         )
@@ -29,10 +29,6 @@ async function criarTabela() {
 app.use(express.json());
 
 const pedidos = [];
-
-/*app.get("/pedidos", (req, res) => {
-    res.json(pedidos);
-});*/
 
 app.get("/pedidos", async (req, res) => {
     try {
@@ -49,17 +45,17 @@ app.get("/pedidos", async (req, res) => {
 });
 
 app.post("/pedidos", async (req, res) => {
-    const { cliente_id, produtoId, quantidade } = req.body;
+    const { clienteId, produtoId, quantidade } = req.body;
 
-    if (!cliente_id || !produtoId || !quantidade || quantidade <= 0) {
+    if (!clienteId || !produtoId || !quantidade || quantidade <= 0) {
         return res.status(400).json({
-            erro: "cliente_id, produtoId e quantidade válida são obrigatórios"
+            erro: "clienteId, produtoId e quantidade válida são obrigatórios"
         });
     }
 
     try {
         await axios.get(
-            `${CLIENTES_URL}/clientes/${cliente_id}`,
+            `${CLIENTES_URL}/clientes/${clienteId}`,
             {
                 timeout: 3000
             }
@@ -77,17 +73,17 @@ app.post("/pedidos", async (req, res) => {
 
         const resultado = await db.query(
             `INSERT INTO pedidos (
-        cliente_id,
-        produto_id,
-        nome_produto,
-        preco_unitario,
+        clienteId,
+        produtoId,
+        nomeProduto,
+        precoUnitario,
         quantidade,
         total
       )
       VALUES ($1, $2, $3, $4, $5, $6)
       RETURNING *`,
             [
-                cliente_id,
+                clienteId,
                 produto.id,
                 produto.nome,
                 produto.preco,

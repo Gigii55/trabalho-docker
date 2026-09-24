@@ -3,10 +3,10 @@ POST http://localhost:3000/clientes
 Content-Type: application/json
 
 {
-  "nome": "Carlos",
+  "nome": "Teste",
   "sobrenome": "Oliveira",
   "telefone": "46991112222",
-  "email": "carlos@email.com"
+  "email": "teste@email.com"
 }
 
 ### listar todos os clientes
@@ -32,7 +32,7 @@ POST http://localhost:3000/pedidos
 Content-Type: application/json
 
 {
-  "cliente_id": 1,
+  "clienteId": 1,
   "produtoId": 1,
   "quantidade": 2
 }
@@ -42,7 +42,7 @@ POST http://localhost:3000/pedidos
 Content-Type: application/json
 
 {
-  "cliente_id": 999,
+  "clienteId": 999,
   "produtoId": 1,
   "quantidade": 1
 }
@@ -52,8 +52,8 @@ POST http://localhost:3000/clientes
 Content-Type: application/json
 
 {
-  "nome": "Carlos",
+  "nome": "Giovanna",
   "sobrenome": "Oliveira",
   "telefone": "46991112222",
-  "email": "carlos@email.com"
+  "email": "giovanna@email.com"
 }
